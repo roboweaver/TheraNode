@@ -1,20 +1,38 @@
+/* global module */
+
 var express = require('express');
 var router = express.Router();
 
+/**
+ * Base get - gets all the events ...
+ * 
+ * @param {Request} req
+ * @param {Response} res
+ * @param {type} next
+ */
 router.get('/', function (req, res, next) {
-    eventList(req, res, next);
+    eventList(req, res);
 }
 );
-
-// Look up by id
+/**
+ * Look up Event by id
+ * @param {Request} req
+ * @param {Response} res
+ * @param {type} next
+ */
 router.get('/:id', function (req, res, next) {
-    eventFind(req, res, next);
+    eventFind(req, res);
 }
 );
 
-// Look up by id
+/**
+ * Route to parent lookup by infection class ...
+ * @param {Request} req
+ * @param {Response} res
+ * @param {type} next
+ */
 router.get('/parent/:infxclass', function (req, res, next) {
-    eventByParent(req, res, next);
+    eventByParent(req, res);
 }
 );
 
@@ -29,6 +47,13 @@ var connectData = {
     password: "smrt600"
 };
 
+/**
+ * FIXME - the connection should be in the application scope so it 
+ *         can be shared.
+ * @param {Request} req
+ * @param {Response} res
+ * @param {type} next
+ */
 oracle.getConnection(connectData,
         function (err, connection) {
             if (err) {
@@ -39,8 +64,13 @@ oracle.getConnection(connectData,
             conn = connection;
         });
         
-// function registered in the /event declaration
-function eventList(req, res, next) {
+/**
+ * function registered in the /event declaration
+ * 
+ * @param {type} req
+ * @param {type} res
+ */
+function eventList(req, res) {
     var eventListSQL = "select td_nhsn_event_id as \"id\", \
                         event_description as \"label\", \
                         'string' as \"type\" \
@@ -49,7 +79,7 @@ function eventList(req, res, next) {
     conn.execute(eventListSQL, [], function (err, results) {
         if (err) {
             console.log("Error executing query:", err);
-            res.status(500).send({error: "Error executing query: " + err, query : eventListSQL});
+            res.status(500).send({error: "Error executing query: " + err, query: eventListSQL});
             res.end();
             return;
         }
@@ -61,14 +91,18 @@ function eventList(req, res, next) {
 }
 ;
 
-
-// function registered in the /event by ID
-function eventFind(req, res, next) {
+/**
+ * function registered in the /event by ID
+ * 
+ * @param {type} req
+ * @param {type} res
+ */
+function eventFind(req, res) {
     var eventList = "select * from td_nhsn_event_criteria where td_nhsn_event_id = :1";
     conn.execute(eventList, [req.params.id], function (err, results) {
         if (err) {
             console.log("Error executing query:", err);
-            res.status(500).send({error: "Error executing query: " + err, query : eventList, id: req.params.id});
+            res.status(500).send({error: "Error executing query: " + err, query: eventList, id: req.params.id});
             res.end();
             return;
         }
@@ -80,7 +114,13 @@ function eventFind(req, res, next) {
 }
 ;
 
-function eventByParent(req, res, next) {
+/**
+ * Get the event by parent ID (used to get sub types of infxClass
+ * 
+ * @param {Request} req
+ * @param {Response} res
+ */
+function eventByParent(req, res) {
     var eventByParentSQL = "SELECT event_type, event_description \
                         FROM td_nhsn_event \
                     WHERE (UPPER ( :1) || '_' || UPPER (event_type) \
@@ -90,7 +130,7 @@ function eventByParent(req, res, next) {
     conn.execute(eventByParentSQL, [req.params.infxclass], function (err, results) {
         if (err) {
             console.log("Error executing query:", err);
-            res.status(500).send({error: "Error executing query: " + err, query : eventByParentSQL, id: req.params.id});
+            res.status(500).send({error: "Error executing query: " + err, query: eventByParentSQL, id: req.params.id});
             res.end();
         }
 
