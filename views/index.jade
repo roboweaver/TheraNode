@@ -1,0 +1,48 @@
+
+head
+    meta(charset='UTF-8')
+    meta(name='viewport',content='width=device-width, initial-scale=1.0')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js') 
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet")
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.css")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/locale/bootstrap-table-en-US.min.js")   
+    script(src='/public/js/query-builder.standalone.min.js') 
+    link(rel='stylesheet', href='/public/css/query-builder.min.css')
+    script(src='/public/js/bootstrap-slider.min.js')
+    link(rel='stylesheet', href='/public/css/bootstrap-slider.min.css')
+    script(src='/public/js/bootbox.min.js')
+    script(src='/public/js/selectize.min.js')
+    link(href="/public/css/selectize.default.css",rel="stylesheet")
+body
+block content
+  h1= title
+  p Welcome to #{title}
+
+    .container
+      .col-md-12.col-lg-10.col-lg-offset-1
+
+        #builder
+        |                 
+        .btn-group
+          button.btn.btn-warning.reset Reset
+          |                     
+          button.btn.btn-success.set Set rules
+        |                 
+        .btn-group
+          button.btn.btn-primary.parse-json JSON
+          |                     
+          button.btn.btn-primary.parse-sql(data-stmt='question_mark') SQL (question mark)
+          |                     
+          button.btn.btn-primary.parse-sql(data-stmt='numbered') SQL (numbered)
+          |                     
+          button.btn.btn-primary.parse-sql(data-stmt='false') SQL
+        |                 
+        #result.hide
+          h3 Output
+          |                     
+          pre.
+            
+script(src='/public/js/queryBuilder.js')
+     
