@@ -1,3 +1,5 @@
+/* global module */
+
 var express = require('express');
 var router = express.Router();
 
@@ -42,7 +44,10 @@ function eventCriteria(req, res) {
 		 AND TD_NHSN_EVENT_CRITERIA.TD_STATUS_ID = 1 \n\
          and TD_NHSN_EVENT.EVENT_TYPE = :1";
 
-    conn.execute(eventCriteriaSQL, [req.params.id], function (err, results) {
+    conn.execute(eventCriteriaSQL, 
+    [req.params.id], 
+            {outFormat: oracle.OBJECT},
+    function (err, results) {
         if (err) {
             console.log("Error executing query:", err);
             return;

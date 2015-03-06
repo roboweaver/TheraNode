@@ -77,21 +77,6 @@ app.use(function (err, req, res, next) {
     });
 });
 
-/**
- * Add the response headers for allowing cross-origin requests
- */
-app.all('*',
-        /**
-         *  Add the headers to the Response
-         * @param {Response} req
-         * @param {Request} res
-         * @param {function} next
-         */
-                function (req, res, next) {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                    next();
-                });
 
 /**
  * Export the app to the module exports
