@@ -1,0 +1,87 @@
+{
+    "rows": [{
+            "ABBREV": "NAI",
+            "DESCRIPTION": "Not an infection",
+            "DISPLAY_ORDER": 3800
+        }, {
+            "ABBREV": "NARI",
+            "DESCRIPTION": "Not a relevant infection",
+            "DISPLAY_ORDER": 3900
+        }, {
+            "ABBREV": "LIO",
+            "DESCRIPTION": "Laboratory-identified MDRO or CDAD",
+            "DISPLAY_ORDER": 4000
+        }, {
+            "ABBREV": "COLO",
+            "DESCRIPTION": "Colonization",
+            "DISPLAY_ORDER": 5600
+        }, {
+            "ABBREV": "BSI",
+            "DESCRIPTION": "BSI (bloodstream infection)",
+            "DISPLAY_ORDER": 6900
+        }, {
+            "ABBREV": "PNEUMO",
+            "DESCRIPTION": "Pneumonia",
+            "DISPLAY_ORDER": 13900
+        }, {
+            "ABBREV": "VAE",
+            "DESCRIPTION": "VAE (ventilator-associated event)",
+            "DISPLAY_ORDER": 20500
+        }, {
+            "ABBREV": "UTI",
+            "DESCRIPTION": "UTI (urinary tract infection)",
+            "DISPLAY_ORDER": 25700
+        }, {
+            "ABBREV": "SSI",
+            "DESCRIPTION": "SSI (surgical site infection)",
+            "DISPLAY_ORDER": 32200
+        }, {
+            "ABBREV": "MDRO",
+            "DESCRIPTION": "MDRO/CDAD",
+            "DISPLAY_ORDER": 41500
+        }, {
+            "ABBREV": "BJ",
+            "DESCRIPTION": "BJ (Bone and joint infection)",
+            "DISPLAY_ORDER": 47600
+        }, {
+            "ABBREV": "CNS",
+            "DESCRIPTION": "CNS (central nervous system)",
+            "DISPLAY_ORDER": 50900
+        }, {
+            "ABBREV": "CVS",
+            "DESCRIPTION": "CVS (Cardiovascular)",
+            "DISPLAY_ORDER": 54900
+        }, {
+            "ABBREV": "EENT",
+            "DESCRIPTION": "EENT (Eye, ear, nose, throat, or mouth infections)",
+            "DISPLAY_ORDER": 59300
+        }, {
+            "ABBREV": "GI",
+            "DESCRIPTION": "GI (Gastrointestinal system infection)",
+            "DISPLAY_ORDER": 63700
+        }, {
+            "ABBREV": "LRI",
+            "DESCRIPTION": "LRI (Lower respiratory tract infection, other than pneumonia)",
+            "DISPLAY_ORDER": 67900
+        }, {
+            "ABBREV": "REPR",
+            "DESCRIPTION": "REPR (Reproductive tract infection)",
+            "DISPLAY_ORDER": 71300
+        }, {
+            "ABBREV": "SST",
+            "DESCRIPTION": "SST (Skin and soft tissue infection)",
+            "DISPLAY_ORDER": 74900
+        }, {
+            "ABBREV": "SYS",
+            "DESCRIPTION": "SYS (Systemic Infection)",
+            "DISPLAY_ORDER": 79600
+        }, {
+            "ABBREV": "DE",
+            "DESCRIPTION": "DE (Dialysis Event)",
+            "DISPLAY_ORDER": 81500
+        }, {
+            "ABBREV": "INFXCLSOTHER",
+            "ADESCRIPTION": "Other/Unspecified",
+            "DISPLAY_ORDER": 84700
+        }]
+}
