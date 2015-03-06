@@ -142,8 +142,8 @@ $('#builder').queryBuilder({
             }
         },
         {
-            id: 'SSI_EventTypes',
-            label: 'SSI Event Types',
+            id: 'eventType',
+            label: 'Event Types',
             type: 'string',
             operators: 'equal',
             plugin: 'selectize',
@@ -157,10 +157,10 @@ $('#builder').queryBuilder({
                 plugins: ['remove_button'],
                 onInitialize: function () {
                     var that = this;
-                    console.log('initialize SSI Event Types');
+                    console.log('initialize Event Types');
                     if (localStorage.infxClass === undefined) {
                         console.log('Do get event types for SSI');
-                        $.getJSON(infxClassAPI, function (data) {
+                        $.getJSON(infxTypeAPI, function (data) {
                             localStorage.infxClass = JSON.stringify(data);
                             data.forEach(function (item) {
                                 that.addOption(item);
@@ -201,20 +201,12 @@ var rules =
                 {"condition": "AND",
                     "rules": [
                         {
-                            "id": "SSI_EventTypes",
-                            "field": "SSI_EventTypes",
+                            "id": "eventType",
+                            "field": "eventType",
                             "type": "string",
                             "input": "text",
                             "operator": "equal",
                             "value": "SIP"
-                        },
-                        {
-                            "id": "SSI_EventTypes",
-                            "field": "SSI_EventTypes",
-                            "type": "string",
-                            "input": "text",
-                            "operator": "equal",
-                            "value": "SIS"
                         }
                     ]
                 }
