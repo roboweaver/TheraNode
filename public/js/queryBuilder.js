@@ -1,34 +1,77 @@
 
 /* global Selectize */
 
-Selectize.define('component', function () {
-    var self = this;
+// This is what we get back from the server
+var results;
+var infxTypeResults = [{
+    "EVENT_TYPE": "",
+        "EVENT_DESCRIPTION": "Pick something"
+}];
 
-    this.on('initialize', function () {
-        self.open();
-    });
+// We just need the rows array of objects
+var rows;
 
-    this.close = (function () {
-        return function () {
-        };
-    })();
+var baseURL = 'http://45451RWEAVER-W7.theradoc.com:3000';
+var infxClassAPI = baseURL + '/infxClass/';
+var infxTypeAPI = baseURL + '/event/parent/';
+var selectInfxType;
+var xhr;
+
+var $infxTypeSection = $('#infxTypeSection');
+$infxTypeSection.hide();
+
+// Infection type selector ...
+var $selectInfxType = $('#infxType').selectize({
+    delimiter: ',',
+    persist: false,
+    maxItems: 1,
+    options: infxTypeResults,
+    labelField: "EVENT_DESCRIPTION",
+    valueField: "EVENT_TYPE",
+    searchField: ["EVENT_TYPE", "EVENT_DESCRIPTION"],
 });
 
-$('.dropdown').each(function () {
-    $_self = $(this);
-    $_self.find('select')
-            .selectize({plugins: ['component'], maxItems: 1})
-            .on('change', function () {
-                console.log('Changed value to:', $(this).val());
-                $_self.find('span.value').text($(this).val());
-                if ($(this).val()) {
-                    $_self.removeClass('open');
+// Get the infection classes ...
+jQuery.getJSON(infxClassAPI)
+    .done(function (data) {
+    // Should have the full list now
+    console.log(data);
+    rows = data;
+    $('#infxClass').selectize({
+        delimiter: ',',
+        persist: false,
+        maxItems: 1,
+        options: rows,
+        labelField: "DESCRIPTION",
+        valueField: "ABBREV",
+        searchField: ["ABBREV", "DESCRIPTION"],
+        onChange: function (value) {
+            if (!value.length) return;
+            console.log('Selected ' + value);
+            selectInfxType.disable();
+            selectInfxType.clearOptions();
+            jQuery.getJSON(infxTypeAPI + value)
+                .done(function (infxTypeData) {
+                console.log(infxTypeData);
+                // Only update the selector if we have data
+                if (!infxTypeData.length) {
+                    $infxTypeSection.hide();
+                    return;
                 }
+                // Loop through the data and populate the list
+                jQuery.each(infxTypeData, function (row, rowValue) {
+                    console.log(rowValue);
+                    selectInfxType.addOption(rowValue);
+                });
+                $infxTypeSection.show();
+                selectInfxType.enable();
             });
-    $_self.find('.selectize-control').on('click', function (e) {
-        e.stopPropagation();
+        }
     });
 });
+
+selectInfxType = $selectInfxType[0].selectize;
+selectInfxType.disable();
 
 /** 
  * ===================================================================

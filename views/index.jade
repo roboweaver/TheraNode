@@ -15,13 +15,21 @@ head
     script(src='/public/js/bootbox.min.js')
     script(src='/public/js/selectize.min.js')
     link(href="/public/css/selectize.default.css",rel="stylesheet")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/js/standalone/selectize.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/css/selectize.bootstrap3.min.css")
 body
 block content
   h1= title
   p Welcome to #{title}
 
     .container
-      .col-md-12.col-lg-10.col-lg-offset-1
+      .col-md-12.col-lg-10.col-lg-offset-1.demo
+        #infxClassSection
+            div Choose an infection classification
+            input#infxClass.demo-default.selectized(type="text", tabindex="-1", style="display: block;", placeholder="Pick an Infection Classification ...")
+        #infxTypeSection
+            div Choose a type of infection
+            input#infxType.demo-default.selectized(type="text", tabindex="1", style="display: block;", placeholder="Pick an Infection Type ...")
 
         #builder
         |                 
