@@ -201,16 +201,16 @@ var rules =
                 {"condition": "AND",
                     "rules": [
                         {
-                            "id": "eventType",
-                            "field": "eventType",
+                            "id": "SSI_EventTypes",
+                            "field": "SSI_EventTypes",
                             "type": "string",
                             "input": "text",
                             "operator": "equal",
                             "value": "SIP"
                         },
                         {
-                            "id": "eventType",
-                            "field": "eventType",
+                            "id": "SSI_EventTypes",
+                            "field": "SSI_EventTypes",
                             "type": "string",
                             "input": "text",
                             "operator": "equal",
