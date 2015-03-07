@@ -77,9 +77,7 @@ oracle.getConnection(connectData,
          * @param {type} res
          */
         function eventList(req, res) {
-            var eventListSQL = "select td_nhsn_event_id as \"id\", \
-                        event_description as \"label\", \
-                        'string' as \"type\" \
+            var eventListSQL = "select * \
                     from td_nhsn_event ";
             console.log(eventListSQL);
             conn.execute(eventListSQL,
