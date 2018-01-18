@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/server.js"
+    "start": "node ./bin/server.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
@@ -13,6 +15,8 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
-    "oracledb": "~0.3.1"
-  }
+    "oracledb": "~0.3.1",
+    "snyk": "^1.68.1"
+  },
+  "snyk": true
 }
